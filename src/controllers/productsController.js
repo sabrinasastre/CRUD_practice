@@ -16,7 +16,11 @@ const controller = {
 
   // Detail - Detail from one product
   detail: (req, res) => {
-    // Do the magic
+    let id = req.params.id;
+    let product = products.find((product) => product.id == id);
+    res.render("detail", {
+      product,
+    });
   },
 
   // Create - Form to create
@@ -94,6 +98,7 @@ const controller = {
     let productJSON = JSON.stringify(finalProducts);
     fs.writeFileSync(productsFilePath, productJSON);
     res.redirect("/");
+    //Recarga la pagina para que se actualice despues de borrar el
   },
 };
 
